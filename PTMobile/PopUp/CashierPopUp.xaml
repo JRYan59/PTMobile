@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="PTMobile.PopUp.CashierPopUp"
+             xmlns:viewmodel="clr-namespace:PTMobile.ViewModel"
+             xmlns:model="clr-namespace:PTMobile.Models"
+             x:DataType="viewmodel:Cajas">
+
+    <StackLayout BackgroundColor="{AppThemeBinding Dark=#434242,Light=WhiteSmoke}" >
+        <Frame BackgroundColor="{AppThemeBinding Dark=#434242,Light=WhiteSmoke}" BorderColor="Transparent" CornerRadius="0">
+            <CollectionView x:Name="cajas"  ItemsSource="{Binding CashierList}"  SelectionMode="Multiple" SelectionChanged="cajas_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Cashier">
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Name}" FontSize="18"  TextColor="{AppThemeBinding Dark=White,Light=Black}"/>
+                            </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Frame>
+
+        <Button WidthRequest="150" TextColor="White" Clicked="Aceptar_Clicked" Text="Aceptar" BackgroundColor="#27aae1" CornerRadius="0"></Button>
+    </StackLayout>
+</toolkit:Popup>

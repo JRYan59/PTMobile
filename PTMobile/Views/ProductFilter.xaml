@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PTMobile.ProductFilter"
+             Title="{x:Static lang:AppResources.ProductFilter}"
+             xmlns:viewmodel="clr-namespace:PTMobile.ViewModel"
+             xmlns:model="clr-namespace:PTMobile.Models"
+             xmlns:lang="clr-namespace:PTMobile.Resources.Languages"
+             x:DataType="viewmodel:Products">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#829460"
+                                        />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
+    <StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60">
+                </RowDefinition>
+                <RowDefinition Height="Auto">
+                </RowDefinition>
+                <RowDefinition Height="Auto">
+                </RowDefinition>
+                <RowDefinition Height="Auto">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Margin="3" BackgroundColor="#434242" TextColor="White" x:Name="AllButton" Clicked="AllButton_Clicked" Grid.Column="0" Grid.Row="0" Text="{x:Static lang:AppResources.FilterByCodeAndName}" LineBreakMode="WordWrap" Padding="1"/>
+            <Button Margin="3" BackgroundColor="#434242" TextColor="White" x:Name="NameButton" Clicked="Nombre_Clicked" Grid.Column="1" Grid.Row="0" Text="{x:Static lang:AppResources.FilterByName}" LineBreakMode="WordWrap" Padding="1"/>
+            <Button Margin="3" BackgroundColor="#434242" TextColor="White" x:Name="CodeButton" Clicked="Code_Clicked" Grid.Column="2" Grid.Row="0" Text="{x:Static lang:AppResources.FilterByCode}" LineBreakMode="WordWrap" Padding="1"/>
+
+            <Entry TextColor="White" Grid.ColumnSpan="2" Margin="3" TextChanged="ProductSearchBar_TextChanged" x:Name="ProductSearchBar" Grid.Column="0" Grid.Row="1" BackgroundColor="#434242" FontSize="16"/>
+
+            <ImageButton x:Name="BarCodeBtn" Clicked="BarCodeBtn_Clicked" Source="{AppThemeBinding Dark=barcode.png,Light=barcodedark.png}"  Grid.Row="1" Grid.Column="2" HeightRequest="32" WidthRequest="50" HorizontalOptions="Start"/>
+            <ImageButton Source="plus.png" x:Name="AddProductBtn" Clicked="AddProductBtn_Clicked" Grid.Row="1" Grid.Column="2"  WidthRequest="32" HeightRequest="32" BorderColor="Black" HorizontalOptions="Center" Margin="20,0,0,0"/>
+            <ImageButton Source="borrar.png" x:Name="DeleteProductBtn" Clicked="DeleteProductBtn_Clicked" Grid.Row="1" Grid.Column="2" HeightRequest="32" WidthRequest="30" BorderColor="Black" HorizontalOptions="End"/>
+            
+
+            <CollectionView SelectionChanged="products_SelectionChanged" Margin="3" x:Name="products"  ItemsSource="{Binding ProductList}"  SelectionMode="Single" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" BackgroundColor="#434242" >
+                <CollectionView.Header>
+                    <Frame BackgroundColor="#434243" Padding="0" CornerRadius="0" Margin="0,0,0,2">
+                    <Grid BackgroundColor="Transparent">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40*">
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="40*">
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="20*">
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                            <Button Margin="0,0,1,1"  BorderWidth="0.5" CornerRadius="0" TextColor="White" IsVisible="false" FontSize="16" x:Name="CodTitle" Grid.Column="0" Text="{x:Static lang:AppResources.Code}" BackgroundColor="Transparent" Clicked="CodTitle_Clicked"/>
+                            <Button Margin="0,0,1,1"  BorderWidth="0.5" CornerRadius="0" TextColor="White"  IsVisible="false" FontSize="16" x:Name="DescrTitle" Grid.Column="1" Grid.Row="2" Text="{x:Static lang:AppResources.Name}" BackgroundColor="Transparent" Clicked="DescrTitle_Clicked"/>
+                            <Label Margin="0,0,0,1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" IsVisible="false" FontSize="16" x:Name="PriceTitle" Grid.Column="2" Grid.Row="2" Text="{x:Static lang:AppResources.Price}" />
+                    </Grid>
+                    </Frame>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Product">
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="20*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Margin="0,0,1,1" Grid.Column="0" Text="{Binding Code}" LineBreakMode="CharacterWrap" FontFamily="Roboto" FontSize="16" TextColor="White"/>
+                            <Label Margin="0,0,1,1" Grid.Column="1" Text="{Binding Name}" LineBreakMode="CharacterWrap" FontFamily="Roboto" FontSize="16" TextColor="White"/>
+                            <Label Margin="0,0,0,1" Grid.Column="2"  Text="{Binding Price,StringFormat='{0:F2}'}" FontFamily="Roboto" FontSize="16" TextColor="White" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Clicked="DetailButton_Clicked" IsEnabled="False" IsVisible="false" x:Name="DetailButton" Margin="3" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Text="{x:Static lang:AppResources.ViewDetails}"  BackgroundColor="#434242" TextColor="White"/>
+        </Grid>
+        
+
+    </StackLayout>
+</ContentPage>

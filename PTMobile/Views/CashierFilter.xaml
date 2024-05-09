@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PTMobile.CashierFilter"
+             Title="{x:Static lang:AppResources.Reports}"
+             xmlns:viewmodel="clr-namespace:PTMobile.ViewModel"
+             xmlns:model="clr-namespace:PTMobile.Models"
+             xmlns:lang="clr-namespace:PTMobile.Resources.Languages"
+             x:DataType="viewmodel:Reports"
+             >
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#27aae1"
+                                        />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout>
+            <Frame x:Name="fechas" WidthRequest="340" BorderColor="Transparent" BackgroundColor="#434242">
+                <StackLayout>
+                    <HorizontalStackLayout>
+                        <Label FontFamily="Roboto" TextColor="White" Text="{x:Static lang:AppResources.From}" FontSize="Medium" WidthRequest="90"/>
+                        <Image Source="calendar.png" WidthRequest="70" HeightRequest="32"/>
+                        <DatePicker FontFamily="Roboto" TextColor="White" x:Name="desde"   FontSize="Medium" FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label FontFamily="Roboto" TextColor="White" Text="{x:Static lang:AppResources.To} "   FontSize="Medium" WidthRequest="90"  />
+                        <Image  Source="calendar.png" WidthRequest="70" HeightRequest="32" />
+                        <DatePicker FontFamily="Roboto" TextColor="White" x:Name="hasta"  FontSize="Medium" FontAttributes="Bold" />
+                    </HorizontalStackLayout>
+                </StackLayout>
+            </Frame>
+            <Button x:Name="btnCajas" FontSize="15" BorderWidth="1" TextColor="White" BackgroundColor="#434242" BorderColor="Transparent" WidthRequest="320" HeightRequest="90" Text="{x:Static lang:AppResources.SelectCashier}" Grid.Column="1" Grid.Row="2" Clicked="Button_Clicked"/>
+            <Button Margin="0,1,0,0" x:Name="btnFilter" FontSize="15" BorderWidth="1" TextColor="White" BackgroundColor="#434242" BorderColor="Transparent" WidthRequest="320" HeightRequest="90" Text="{x:Static lang:AppResources.Filter}" Grid.Column="1" Grid.Row="3" Clicked="btnFilter_Clicked"/>
+
+            <Label  IsVisible="false" x:Name="ResultTitle" FontFamily="Roboto" Grid.Column="1" Grid.Row="4" TextColor="White" Text="{x:Static lang:AppResources.Results}" WidthRequest="320" FontSize="17" Margin="0,10,0,0"/>
+
+            <Label BackgroundColor="#434242" IsVisible="false" x:Name="TitleDate" FontFamily="Roboto" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Text="{x:Static lang:AppResources.DateCashier}" Margin="0,10,0,0" FontSize="17" WidthRequest="320"/>
+
+            <CollectionView Margin="0,1,0,0" x:Name="reports"  ItemsSource="{Binding ReportList}"  SelectionMode="Single" Grid.Column="1" Grid.Row="6" BackgroundColor="#434242" WidthRequest="320">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:ReportZ">
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DisplayDate}" FontFamily="Roboto" FontSize="16" TextColor="White" WidthRequest="250"/>
+                            
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            
+            <Button CornerRadius="3" BorderColor="Black" BackgroundColor="#434242" TextColor="White" Text="{x:Static lang:AppResources.OpenReport}" x:Name="BtnOpenRep" Clicked="BtnOpenRep_Clicked" Grid.Column="1" Grid.Row="7" WidthRequest="150" HeightRequest="50" Margin="0,5,0,0"/>
+            </StackLayout>
+    </ScrollView>
+</ContentPage>

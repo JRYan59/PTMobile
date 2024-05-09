@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Model="clr-namespace:PTMobile.Models"
+             xmlns:View="clr-namespace:PTMobile.ViewModel"
+             xmlns:lang="clr-namespace:PTMobile.Resources.Languages"
+             x:Class="PTMobile.Views.AuthorizationListView"
+             Title="{x:Static lang:AppResources.AuthorizationList}">
+    <VerticalStackLayout Spacing="20">
+        <ImageButton HorizontalOptions="Start" Margin="10,0,0,0" HeightRequest="30" WidthRequest="30" Source="{AppThemeBinding Dark=filter.png,Light=filterdark.png}" x:Name="FilterBtn" Clicked="FilterBtn_Clicked" />
+        <CollectionView Margin="10,0,10,10" HeightRequest="350" x:Name="AuthorizationCollectionView" x:DataType="View:Authorizations" ItemsSource="{Binding AuthorizationsList}" SelectionMode="Single" SelectionChanged="AuthorizationCollectionView_SelectionChanged">
+            <CollectionView.Header>
+                <StackLayout>
+                    <Grid ColumnSpacing="5" ColumnDefinitions="20*,20*,20*,20*">
+                        <Label Grid.Column="0" FontSize="15" FontFamily="Roboto" FontAttributes="Bold" TextColor="{AppThemeBinding Dark=White,Light=Black}" Text="{x:Static lang:AppResources.Date}" />
+                        <Label Grid.Column="1" FontSize="15" FontFamily="Roboto" FontAttributes="Bold" TextColor="{AppThemeBinding Dark=White,Light=Black}" Text="{x:Static lang:AppResources.Description}"/>
+                        <Label Grid.Column="2" FontSize="15" FontFamily="Roboto" FontAttributes="Bold" TextColor="{AppThemeBinding Dark=White,Light=Black}" Text="{x:Static lang:AppResources.Status}" />
+                        <Label Grid.Column="3" FontSize="15" FontFamily="Roboto" FontAttributes="Bold" TextColor="{AppThemeBinding Dark=White,Light=Black}" Text="{x:Static lang:AppResources.ValidationDate}" />
+                    </Grid>
+                    <BoxView HeightRequest="0.1" BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:Authorization">
+                    <StackLayout>
+                        <Grid RowDefinitions="100*" ColumnSpacing="5" ColumnDefinitions="20*,20*,20*,20*">
+                            <Label Grid.Column="0" FontFamily="Roboto" FontSize="15" TextColor="{AppThemeBinding Dark=White,Light=Black}" LineBreakMode="CharacterWrap" Text="{Binding Date}"/>
+                            <Label Grid.Column="1" FontFamily="Roboto" FontSize="15" TextColor="{AppThemeBinding Dark=White,Light=Black}" LineBreakMode="CharacterWrap" Text="{Binding Description}"/>
+                            <Label Grid.Column="2" FontFamily="Roboto" FontSize="15" TextColor="{AppThemeBinding Dark=White,Light=Black}" LineBreakMode="CharacterWrap" Text="{Binding DisplayStatus}"/>
+                            <Label Grid.Column="3" FontFamily="Roboto" FontSize="15" TextColor="{AppThemeBinding Dark=White,Light=Black}" LineBreakMode="CharacterWrap" Text="{Binding CheckDate}" IsVisible="{Binding Ended}"/>
+                        </Grid>
+                        <BoxView HeightRequest="0.1" BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

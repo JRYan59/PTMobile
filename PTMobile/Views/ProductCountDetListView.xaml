@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:PTMobile.ViewModel"
+             xmlns:Model="clr-namespace:PTMobile.Models"
+             x:Class="PTMobile.Views.ProductCountDetListView">
+    <VerticalStackLayout>
+        
+            <CollectionView x:Name="ProductDetCollectionView" SelectionChanged="ProductDetCollectionView_SelectionChanged" x:DataType="ViewModel:Product_Count_Dets" ItemsSource="{Binding ProductCountDetsList}" Margin="20" SelectionMode="Single">
+            <CollectionView.Header>
+                <StackLayout Margin="0,0,0,2">
+                    <Grid ColumnSpacing="5" ColumnDefinitions="25*,25*">
+                        <Label FontAttributes="Bold" Grid.Column="0" Text="Cantidad" FontFamily="Roboto" FontSize="15" TextColor="White"/>
+                        <Label FontAttributes="Bold" Grid.Column="1" Text="Locacion" FontFamily="Roboto" FontSize="15" TextColor="White"/>
+                    </Grid>
+                    <BoxView HeightRequest="0.1" Color="White"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Model:Product_Count_Det">
+                    <Grid HeightRequest="41" RowSpacing="5" ColumnDefinitions="25*,25*" RowDefinitions="100*">
+                        <Label FontFamily="Roboto" FontSize="16" Grid.Column="0" x:Name="Qty" Text="{Binding Qty}"></Label>
+                        <Label FontFamily="Roboto" FontSize="16" Grid.Column="1" x:Name="Location" Text="{Binding Location}"></Label>
+                    </Grid>
+                </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        
+    </VerticalStackLayout>
+</ContentPage>

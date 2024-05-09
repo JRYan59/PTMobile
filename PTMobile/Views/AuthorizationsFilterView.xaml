@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Model="clr-namespace:PTMobile.Models"
+             xmlns:View="clr-namespace:PTMobile.ViewModel"
+             x:Class="PTMobile.Views.AuthorizationsFilterView"
+             Title="AuthorizationsFilterView">
+    <VerticalStackLayout>
+        <HorizontalStackLayout>
+            <CheckBox Color="#829460" x:Name="TodosCheckBox" CheckedChanged="TodosCheckBox_CheckedChanged"/>
+            <Label Text="Todos" VerticalOptions="Center"/>
+            <CheckBox Color="#829460" x:Name="PorValidarCheckBox" IsChecked="True" CheckedChanged="PorValidarCheckBox_CheckedChanged"/>
+            <Label Text="Por Validar" VerticalOptions="Center"/>
+            <CheckBox Color="#829460" x:Name="AutorizadosCheckBox" CheckedChanged="AutorizadosCheckBox_CheckedChanged"/>
+            <Label Text="Autorizados" VerticalOptions="Center"/>
+            <CheckBox Color="#829460" x:Name="RechazadosCheckBox" CheckedChanged="RechazadosCheckBox_CheckedChanged"/>
+            <Label Text="Rechazados" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+        <StackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <CheckBox Color="#829460" x:Name="FechaSolCheckBox" CheckedChanged="FechaSolCheckBox_CheckedChanged"/>
+                <Label FontSize="15" FontAttributes="Bold" Text="F. Solicitada"/>
+                <CheckBox Color="#829460" x:Name="FechaValidacionCheckBox" CheckedChanged="FechaValidacionCheckBox_CheckedChanged" Margin="100,0,0,0"/>
+                <Label FontSize="15" FontAttributes="Bold" Text="F. Validación" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label VerticalOptions="Center" FontSize="15" Text="Desde: "/>
+                        <DatePicker FontSize="15" x:Name="SolDateBegin" DateSelected="SolDateBegin_DateSelected" BindingContext="{x:Reference Name=FechaSolCheckBox}" IsEnabled="{Binding Path=IsChecked}"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label VerticalOptions="Center" FontSize="15" Text="Hasta: "/>
+                        <DatePicker FontSize="15" x:Name="SolDateEnd" DateSelected="SolDateEnd_DateSelected" BindingContext="{x:Reference Name=FechaSolCheckBox}" IsEnabled="{Binding Path=IsChecked}"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <VerticalStackLayout Margin="50,0,0,0">
+                    <HorizontalStackLayout Spacing="5">
+                        <Label VerticalOptions="Center" FontSize="15" Text="Desde: "/>
+                        <DatePicker FontSize="15" x:Name="ValidDateBegin" DateSelected="ValidDateBegin_DateSelected" BindingContext="{x:Reference Name=FechaValidacionCheckBox}" IsEnabled="{Binding Path=IsChecked}"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label VerticalOptions="Center" FontSize="15" Text="Hasta: "/>
+                        <DatePicker FontSize="15" x:Name="ValidDateEnd" DateSelected="ValidDateEnd_DateSelected" BindingContext="{x:Reference Name=FechaValidacionCheckBox}" IsEnabled="{Binding Path=IsChecked}"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </StackLayout>
+        <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+            <Button TextColor="White" BackgroundColor="#434242" WidthRequest="150" Text="Filtrar" x:Name="FiltrarBtn" Clicked="FiltrarBtn_Clicked"/>
+            <Button TextColor="White" BackgroundColor="#434242" WidthRequest="150" Text="Limpiar Filtro" x:Name="LimpiarFiltroBtn" Clicked="LimpiarFiltroBtn_Clicked"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

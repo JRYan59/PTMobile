@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:PTMobile.Resources.Languages"
+             x:Class="PTMobile.Views.ConfigurationView"
+             Title="{x:Static lang:AppResources.Settings}">
+    <VerticalStackLayout Spacing="5">
+        <Label 
+            Text="Data" 
+            HorizontalOptions="Start" Margin="5,0,0,1"
+            FontSize="16"
+            FontAttributes="Bold"
+            />
+        <BoxView  BackgroundColor="Gray" HeightRequest="1" Margin="1,0,1,0"></BoxView>
+
+        <HorizontalStackLayout Spacing="5">
+            <Label FontSize="15" VerticalOptions="Center" Margin="5,0,0,0"
+            Text="{x:Static lang:AppResources.LoadDemoData}"/>
+            <Button x:Name="CargarDemoBtn" Clicked="CargarDemoBtn_Clicked" Text="{x:Static lang:AppResources.Load}" Margin="0,5,0,0" BackgroundColor="#434242" TextColor="White"/>
+        </HorizontalStackLayout>
+        
+        <BoxView  BackgroundColor="Gray" HeightRequest="1" Margin="1,0,1,0"></BoxView>
+        <Label 
+            Text="Log" 
+            HorizontalOptions="Start" Margin="5,0,0,1"
+            FontSize="16"
+            FontAttributes="Bold"
+            />
+        <BoxView  BackgroundColor="Gray" HeightRequest="1" Margin="1,1,1,0"></BoxView>
+
+        <HorizontalStackLayout Margin="0,0,0,10">
+            <Label Text="{Static lang:AppResources.Date}" VerticalOptions="Center"/>
+            <Label Text=":" Margin="0,1,10,0" VerticalOptions="Center"/>
+            <DatePicker x:Name="LogDatePicker" HorizontalOptions="Start"/>
+            <Button HorizontalOptions="Center" x:Name="VerLogBtn" Clicked="VerLogBtn_Clicked" Text="{x:Static lang:AppResources.ReadLog}" Margin="50,5,0,0" BackgroundColor="#434242" TextColor="White"/>
+        </HorizontalStackLayout>
+        
+        <ScrollView HeightRequest="300">
+            <Frame BackgroundColor="Transparent">
+                <Label x:Name="LogView" />
+            </Frame>
+        </ScrollView>
+        
+    </VerticalStackLayout>
+</ContentPage>

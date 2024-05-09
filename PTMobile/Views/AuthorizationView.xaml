@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Model="clr-namespace:PTMobile.Models"
+             xmlns:View="clr-namespace:PTMobile.ViewModel"
+             x:Class="PTMobile.Views.AuthorizationView"
+             x:DataType="Model:Authorization"
+             Title="{Binding Description}">
+    <ScrollView>
+    <VerticalStackLayout HorizontalOptions="Center" Margin="30" Spacing="7" x:Name="AuthorizationData" x:DataType="Model:Authorization">
+        
+        <HorizontalStackLayout Spacing="5">
+            <Label FontAttributes="Bold" FontSize="16" Text="Fecha:"/>
+            <Label FontSize="15" Text="{Binding Date}"/>
+        </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5" x:Name="FValidacionLbl" IsVisible="false">
+                <Label FontAttributes="Bold" FontSize="16" Text="Fecha Validación:"/>
+                <Label FontSize="15" Text="{Binding CheckDate}"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5">
+            <Label FontAttributes="Bold" FontSize="16" Text="Usuario:"/>
+            <Label FontSize="15" Text="{Binding UserName}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="5">
+            <Label FontAttributes="Bold" FontSize="16" Text="Descripcion:"/>
+            <Label FontSize="15" Text="{Binding Description}"/>
+        </HorizontalStackLayout >
+        <HorizontalStackLayout Spacing="5">
+            <Label FontAttributes="Bold" FontSize="16" Text="Estado:"/>
+            <Label FontSize="15" Text="{Binding DisplayStatus}"/>
+        </HorizontalStackLayout>
+        <StackLayout  Margin="20">
+            <Frame BackgroundColor="Transparent" CornerRadius="1" BorderColor="#434242">
+                <ScrollView HeightRequest="200">
+                    <Label Text="{Binding DetailDescription}" FontSize="15" />
+                </ScrollView>
+            </Frame>
+        </StackLayout>
+        <Image Source="{Binding CapturePath}" HeightRequest="200"></Image>
+        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="End" Spacing="20">
+                <ImageButton x:Name="AuthorizeBtn" Clicked="AuthorizeBtn_Clicked"  HeightRequest="45" Source="authorize.png" IsVisible="false"/>
+            <ImageButton x:Name="RejectBtn" Clicked="RejectBtn_Clicked"  HeightRequest="45" Source="reject.png" IsVisible="false"/>
+        </HorizontalStackLayout>
+       
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "332442298497",
+    "project_id": "ptmobile-5cb41",
+    "storage_bucket": "ptmobile-5cb41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332442298497:android:8d8f9e316cdea688820580",
+        "android_client_info": {
+          "package_name": "com.posandtouch.ptmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332442298497-u4l8qia2jklekbl5b4q28k0avqi5f30n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFXUcXxuqE2kj7hpOpDTPUNfKU6qDS7l8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332442298497-u4l8qia2jklekbl5b4q28k0avqi5f30n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

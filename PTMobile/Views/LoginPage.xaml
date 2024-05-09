@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:PTMobile.Resources.Languages"
+             x:Class="PTMobile.LoginPage"
+             Title="PTMobile - LoginPage" Shell.PresentationMode="Modal">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Page">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White,Dark=Black}"/>
+            </Style>
+            <Style TargetType="Entry" x:Key="EntryStyle">
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Dark=#434242,Light=#434242}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark=White,Light=Black}"/>
+            </Style>
+            <Style TargetType="Button" x:Key="BtnStyle">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BorderColor" Value="{AppThemeBinding Dark=#434242,Light=Black}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark=White,Light=Black}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        
+        <Label FontFamily="Roboto" x:Name="Result" TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <HorizontalStackLayout Margin="0,0,0,40">
+            <Image HeightRequest="25" VerticalOptions="Center" Source="{AppThemeBinding Light=userdark.png,Dark=user.png}"/>
+            <Entry Style="{StaticResource EntryStyle}" HeightRequest="50" TextChanged="User_TextChanged" Completed="User_Completed" FontFamily="Roboto" WidthRequest="200" FontSize="20" x:Name="User" Placeholder="{x:Static lang:AppResources.Username}" ClearButtonVisibility="WhileEditing" FontAutoScalingEnabled="False"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout >
+            <Image  HeightRequest="25" Source="{AppThemeBinding Light=padlockdark.png,Dark=padlock.png}"/>
+            <Entry Style="{StaticResource EntryStyle}"  HeightRequest="50"  FontFamily="Roboto"  FontAutoScalingEnabled="False" Grid.Column="0" Grid.Row="2" TextChanged="Password_TextChanged" Completed="Password_Completed" IsPassword="true" WidthRequest="200" FontSize="20" x:Name="Password" Placeholder="{x:Static lang:AppResources.Password}" ClearButtonVisibility="Never" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="0,0,0,50">
+            <CheckBox Color="Gray" x:Name="RememberCheckBox" IsChecked="False"/>
+            <Label VerticalOptions="Center" TextColor="Gray" Text="{x:Static lang:AppResources.RememberMe}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+
+            <Button Style="{StaticResource BtnStyle}" HeightRequest="50" x:Name="Aceptar" Clicked="Aceptar_Clicked" FontFamily="Roboto" WidthRequest="150" Text="{x:Static lang:AppResources.Login}" CornerRadius="10" BorderWidth="1" Margin="28,0,0,0"/>
+            <ImageButton HeightRequest="40" x:Name="HuellaBtn" Source="{AppThemeBinding Light=fingerprintdark.png,Dark=fingerprint.png}" Clicked="HuellaBtn_Clicked" SemanticProperties.Hint="Click para autenticar" BorderColor="Transparent" Aspect="AspectFit"/>
+        </HorizontalStackLayout>
+        <Button Clicked="Crear_Clicked" Margin="0,0,30,0" BackgroundColor="Transparent" FontFamily="Roboto" TextColor="Blue" Text="{x:Static lang:AppResources.NewUser}"></Button>
+        <Label Margin="0,0,15,0" TextColor="Red" WidthRequest="100" HeightRequest="100" x:Name="Creado"/>
+        <Image Opacity="0.1" Source="logo.png" WidthRequest="140"></Image>
+    </VerticalStackLayout>
+</ContentPage>

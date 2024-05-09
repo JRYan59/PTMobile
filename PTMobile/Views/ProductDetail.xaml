@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PTMobile.ProductDetail"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:model="clr-namespace:PTMobile.Models"
+             xmlns:ViewModel="clr-namespace:PTMobile.ViewModel"
+             xmlns:local="clr-namespace:PTMobile"
+             xmlns:lang="clr-namespace:PTMobile.Resources.Languages"
+             
+             Title="ProductDetail">
+    <ScrollView>
+    <StackLayout Margin="10">
+            <StackLayout x:Name="ProductData" x:DataType="model:Product">
+        <Label FontAttributes="Bold" Text="Id" FontSize="16"/>
+            <Entry  x:Name="Id" FontSize="15" Placeholder="Id" Text="{Binding Id}" IsReadOnly="True"/>
+
+                <Label FontAttributes="Bold" Text="{x:Static lang:AppResources.Code}" FontSize="16"/>
+                <Entry  x:Name="Code" FontSize="15" Placeholder="{x:Static lang:AppResources.Code}" Text="{Binding Code}"/>
+
+                <Label FontAttributes="Bold" Text="{x:Static lang:AppResources.Name}" FontSize="16"/>
+                <Entry  x:Name="Name" FontSize="15" Placeholder="{x:Static lang:AppResources.Name}" Text="{Binding Name}" />
+
+                <Label FontAttributes="Bold" Text="{x:Static lang:AppResources.Price}" FontSize="16"/>
+                <Entry  IsSpellCheckEnabled="False"  Keyboard="Numeric" x:Name="Price" FontSize="15" Placeholder="{x:Static lang:AppResources.Price}" Text="{Binding Price}">
+                <!--<Entry.Behaviors>
+                <toolkit:MaskedBehavior Mask="00000000.00" UnmaskedCharacter="0" />
+            </Entry.Behaviors>-->
+            </Entry>
+            </StackLayout>
+
+            <Grid Margin="5"  x:DataType="ViewModel:GalleryViewModel" RowDefinitions="*,Auto">
+                <CarouselView x:Name="CarouselView" Grid.Row="0" 
+                      Loop="False"
+                      HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                      ItemsSource="{Binding Files}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate x:DataType="model:CaptureDetails">
+                            <Grid RowDefinitions="*">
+                                <Image x:Name="Image" Source= "{Binding Path}" HeightRequest="300"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                            
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </Grid>
+
+            <Grid x:DataType="ViewModel:GalleryViewModel" ColumnDefinitions="45*,30*,25*" ColumnSpacing="1">
+                <Button SemanticProperties.Hint="{x:Static lang:AppResources.BrowseImages}" Grid.Column="0" FontSize="15" Command="{Binding SearchPhotoCommand}" TextColor="White" x:Name="SearchPictureBtn" BackgroundColor="#434242" Text="{x:Static lang:AppResources.BrowseImages}"/>
+                <Button SemanticProperties.Hint="{x:Static lang:AppResources.TakePhoto}" Grid.Column="1" FontSize="15" Command="{Binding CapturePhotoCommand}" TextColor="White" x:Name="NewPictureBtn" BackgroundColor="#434242" Text="{x:Static lang:AppResources.TakePhoto}"/>
+                <Button Grid.Column="2" FontSize="15" HorizontalOptions="Start" x:Name="DeleteBtn" Clicked="DeleteBtn_Clicked" TextColor="White" Text="{x:Static lang:AppResources.Delete}" BackgroundColor="#FF0032"/>
+            </Grid>
+            <Button Margin="0,3,0,0" FontSize="15" x:Name="SaveBtn" Clicked="Save_Clicked" TextColor="White" Text="{x:Static lang:AppResources.Save}" BackgroundColor="#434242"/>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

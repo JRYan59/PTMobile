@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PTMobile.Views.Product_Count_Det"
+             Title="Product_Count_Det"
+             >
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"/>
+    </Shell.BackButtonBehavior>
+
+    <ScrollView>
+
+        <VerticalStackLayout Margin="20" Spacing="15">
+            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="80*,Auto" >
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontAttributes="Bold" Text="Codigo" FontSize="16"/>
+                <Entry Grid.Row="1" Grid.Column="0"  x:Name="Code" FontSize="15" Placeholder="Codigo" Completed="Code_Completed"/>
+                <ImageButton Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent" x:Name="ScanBtn" Source="{AppThemeBinding Dark=barcode.png,Light=barcodedark.png}" Clicked="ScanBtn_Clicked" HeightRequest="32" WidthRequest="40"/>
+            </Grid>
+
+
+
+
+            <Label FontAttributes="Bold" Text="Descripcion" FontSize="16"/>
+            <Entry x:Name="Descr" FontSize="15" Placeholder="Descripcion" IsReadOnly="True"  />
+
+            <Label FontAttributes="Bold" Text="Cantidad" FontSize="16"/>
+            <Entry IsSpellCheckEnabled="False"  Keyboard="Numeric" x:Name="Qty" FontSize="15" Placeholder="Cantidad" Text=""/>
+
+            <Label FontAttributes="Bold" Text="Locacion" FontSize="16"/>
+            <Entry x:Name="Location" FontSize="15" Placeholder="Locacion" Text=""/>
+            
+            <Button x:Name="GuardarContinuarBtn" Clicked="GuardarContinuarBtn_Clicked" Text="Guardar y Continuar" FontSize="16" TextColor="White" FontFamily="Roboto"   BackgroundColor="#434242"></Button>
+            <Button x:Name="GuardarSalirBtn" Clicked="GuardarSalirBtn_Clicked" Text="Guardar y Salir" FontSize="16" TextColor="White" FontFamily="Roboto"   BackgroundColor="#434242"></Button>
+            <Button x:Name="SalirBtn" Clicked="SalirBtn_Clicked" Text="Salir" FontSize="16" TextColor="White" FontFamily="Roboto"   BackgroundColor="#434242"></Button>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

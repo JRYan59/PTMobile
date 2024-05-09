@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PTMobile.Views.TakingInventoryFilterView"
+             Title="TakingInventoryFilterView"
+             xmlns:Model="clr-namespace:PTMobile.Models"
+             xmlns:View="clr-namespace:PTMobile.ViewModel">
+    <VerticalStackLayout Margin="20">
+        <HorizontalStackLayout>
+            <CheckBox Color="#829460" x:Name="TodosCheckBox" CheckedChanged="TodosCheckBox_CheckedChanged"/>
+            <Label VerticalOptions="Center" Text="Todos"/>
+            <CheckBox Color="#829460" x:Name="EnProcesoCheckBox" IsChecked="True" CheckedChanged="EnProcesoCheckBox_CheckedChanged"/>
+            <Label FontSize="13" VerticalOptions="Center" Text="En Proceso"/>
+            <CheckBox Color="#829460" x:Name="ProcesadoCheckBox" CheckedChanged="ProcesadoCheckBox_CheckedChanged"/>
+            <Label VerticalOptions="Center" Text="Procesado"/>
+            <CheckBox Color="#829460" x:Name="AnuladoCheckBox" CheckedChanged="AnuladoCheckBox_CheckedChanged"/>
+            <Label VerticalOptions="Center" Text="Anulado"/>
+        </HorizontalStackLayout>
+
+        <StackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <CheckBox Color="#829460" x:Name="StartDateCheck" CheckedChanged="StartDateCheck_CheckedChanged"></CheckBox>
+                <Label VerticalOptions="Center" FontAttributes="Bold" FontSize="15" Text="F. Inicio"></Label>
+                <CheckBox Color="#829460" x:Name="EndDateCheck" CheckedChanged="EndDateCheck_CheckedChanged" Margin="100,0,0,0"></CheckBox>
+                <Label VerticalOptions="Center" FontAttributes="Bold" FontSize="15" Text="F. Fin"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <VerticalStackLayout >
+                    <HorizontalStackLayout Spacing="5">
+                        <Label VerticalOptions="Center" FontSize="15" Text="Desde:"></Label>
+                        <DatePicker x:Name="StartDatePickerBegin" DateSelected="StartDatePickerBegin_DateSelected" BindingContext="{x:Reference Name=StartDateCheck}" IsEnabled="{Binding Path=IsChecked}" FontSize="15"></DatePicker>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label VerticalOptions="Center" FontSize="15" Text="Hasta:"></Label>
+                        <DatePicker x:Name="EndDatePickerBegin" DateSelected="EndDatePickerBegin_DateSelected"  BindingContext="{x:Reference Name=StartDateCheck}" IsEnabled="{Binding Path=IsChecked}" FontSize="15"></DatePicker>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <VerticalStackLayout Margin="50,0,0,0">
+                    <HorizontalStackLayout Spacing="5">
+                        <Label  VerticalOptions="Center" FontSize="15" Text="Desde:"></Label>
+                        <DatePicker x:Name="StartDatePickerFinish" DateSelected="StartDatePickerFinish_DateSelected" BindingContext="{x:Reference Name=EndDateCheck}" IsEnabled="{Binding Path=IsChecked}" FontSize="15"></DatePicker>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label VerticalOptions="Center" FontSize="15" Text="Hasta:"></Label>
+                        <DatePicker x:Name="EndDatePickerFinish" DateSelected="EndDatePickerFinish_DateSelected" BindingContext="{x:Reference Name=EndDateCheck}" IsEnabled="{Binding Path=IsChecked}" FontSize="15"></DatePicker>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <Picker WidthRequest="200" x:Name="WareHousePicker" Title="Filtrar Almacen" x:DataType="View:Product_Counts" ItemsSource="{Binding ProductCountsListAll}" SelectedIndexChanged="Picker_SelectedIndexChanged" ItemDisplayBinding="{Binding Warehouse}">
+            </Picker>
+        </StackLayout>
+        <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+            <Button TextColor="White" BackgroundColor="#434242" WidthRequest="150" Text="Filtrar" x:Name="FiltrarBtn" Clicked="FiltrarBtn_Clicked"/>
+            <Button TextColor="White" BackgroundColor="#434242" WidthRequest="150" Text="Limpiar Filtro" x:Name="LimpiarFiltroBtn" Clicked="LimpiarFiltroBtn_Clicked"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

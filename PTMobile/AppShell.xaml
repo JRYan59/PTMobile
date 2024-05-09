@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PTMobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PTMobile"
+    xmlns:Views="clr-namespace:PTMobile.Views"
+    xmlns:lang="clr-namespace:PTMobile.Resources.Languages"
+    Shell.NavBarIsVisible="True" 
+    Shell.TabBarIsVisible="False"
+    FlyoutBackgroundColor="{AppThemeBinding Dark=#434242,Light=WhiteSmoke}"
+    BackgroundColor="{AppThemeBinding Light=#829460,Dark=Black}"
+    >
+
+    <Shell.FlyoutHeader>
+        <Image Opacity="0.18" Source="cover.png"/>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <StackLayout>
+            <Image WidthRequest="150" Opacity="0.4" Source="logo.png" VerticalOptions="Center"/>
+            <ImageButton Source="{AppThemeBinding Light=logoutdark.png,Dark=logout.png}" Margin="5" x:Name="LogoutBtn" Clicked="LogoutBtn_Clicked" HeightRequest="28" WidthRequest="30" HorizontalOptions="End" Aspect="AspectFit"/>
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+
+    <ShellContent Icon="house.png"
+        Title="{x:Static lang:AppResources.MainPage}"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage"/>
+        <ShellContent Icon="reports.png"
+        Title="{x:Static lang:AppResources.Reports}"
+        ContentTemplate="{DataTemplate local:CashierFilter}"
+        Route="CashierFilter" />
+    <ShellContent Icon="products.png"
+        Title="{x:Static lang:AppResources.Products}"
+        ContentTemplate="{DataTemplate local:ProductFilter}"
+        Route="ProductFilter" />
+    <ShellContent Icon="pcount.png"
+        Title="{x:Static lang:AppResources.TakingInventory}"
+        ContentTemplate="{DataTemplate Views:TakingInventory}"
+        Route="TakingInventory"/>
+    <ShellContent Icon="key.png"
+        Title="{x:Static lang:AppResources.AuthorizationList}"
+        ContentTemplate="{DataTemplate Views:AuthorizationListView}"
+        Route="AuthorizationFilter"/>
+    <ShellContent Icon="settings.png"
+        Title="{x:Static lang:AppResources.Settings}"
+        ContentTemplate="{DataTemplate Views:ConfigurationView}"
+        Route="ConfigurationView"/>
+</Shell>

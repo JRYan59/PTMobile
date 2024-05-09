@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PTMobile
+{
+    public partial class CustomMediaPicker
+    {
+        public partial Task<FileResult> CapturePhotoAsync(MediaPickerOptions options)
+            => MediaPicker.Default.CapturePhotoAsync(options);
+
+        public partial Task<FileResult> CaptureVideoAsync(MediaPickerOptions options)
+            => MediaPicker.Default.CaptureVideoAsync(options);
+    }
+
+}
